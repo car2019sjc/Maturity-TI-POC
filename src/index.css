@@ -1,0 +1,241 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos específicos para impressão e PDF */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #374151;
+    background: white;
+    margin: 0;
+    padding: 15px;
+  }
+
+  /* Ocultar elementos desnecessários */
+  button, .no-print, nav, .navigation-tabs {
+    display: none !important;
+  }
+
+  /* Gráficos - converter para texto ou ocultar */
+  .recharts-wrapper {
+    display: none !important;
+  }
+
+  /* Melhorar quebras de página */
+  .bg-white.p-8 {
+    page-break-inside: avoid;
+    margin-bottom: 20px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    padding: 16px;
+  }
+
+  /* Títulos principais */
+  h1, h2, h3 {
+    page-break-after: avoid;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  h2.text-4xl {
+    font-size: 24px;
+    color: #1e40af;
+  }
+
+  h3.font-bold.text-2xl {
+    font-size: 18px;
+    color: #1f2937;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 4px;
+  }
+
+  /* Tabelas otimizadas */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 10px;
+    page-break-inside: avoid;
+  }
+
+  th {
+    background-color: #f3f4f6 !important;
+    border: 1px solid #d1d5db !important;
+    padding: 6px 4px;
+    font-weight: 600;
+    text-align: left;
+    color: #374151 !important;
+    font-size: 10px;
+  }
+
+  td {
+    border: 1px solid #d1d5db !important;
+    padding: 6px 4px;
+    color: #374151 !important;
+    font-size: 10px;
+  }
+
+  /* Cards de métricas */
+  .grid.grid-cols-1.md\\:grid-cols-3 > div {
+    page-break-inside: avoid;
+    border: 1px solid #d1d5db;
+    margin-bottom: 10px;
+    padding: 12px;
+    background: white !important;
+  }
+
+  /* Status badges e indicadores */
+  .bg-red-500, .bg-orange-500, .bg-yellow-500, .bg-green-500, .bg-blue-500 {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Preservar cores dos textos importantes */
+  .text-red-600, .text-red-700, .text-red-800, .text-red-900 {
+    color: #dc2626 !important;
+  }
+
+  .text-green-600, .text-green-700, .text-green-800, .text-green-900 {
+    color: #16a34a !important;
+  }
+
+  .text-blue-600, .text-blue-700, .text-blue-800, .text-blue-900 {
+    color: #2563eb !important;
+  }
+
+  .text-yellow-600, .text-yellow-700, .text-yellow-800, .text-yellow-900 {
+    color: #ca8a04 !important;
+  }
+
+  .text-orange-600, .text-orange-700, .text-orange-800, .text-orange-900 {
+    color: #ea580c !important;
+  }
+
+  .text-purple-600, .text-purple-700, .text-purple-800, .text-purple-900 {
+    color: #9333ea !important;
+  }
+
+  /* Preservar backgrounds coloridos */
+  .bg-red-50 { background-color: #fef2f2 !important; }
+  .bg-green-50 { background-color: #f0fdf4 !important; }
+  .bg-blue-50 { background-color: #eff6ff !important; }
+  .bg-yellow-50 { background-color: #fefce8 !important; }
+  .bg-orange-50 { background-color: #fff7ed !important; }
+  .bg-purple-50 { background-color: #faf5ff !important; }
+  .bg-gray-50 { background-color: #f9fafb !important; }
+
+  /* Gradientes convertidos para cores sólidas */
+  .bg-gradient-to-br {
+    background: #3b82f6 !important;
+    color: white !important;
+  }
+
+  .bg-gradient-to-r {
+    background: #6366f1 !important;
+    color: white !important;
+  }
+
+  /* Remover sombras e efeitos */
+  .shadow-xl, .shadow-lg, .shadow-md, .shadow-sm {
+    box-shadow: none !important;
+  }
+
+  /* Simplificar bordas arredondadas */
+  .rounded-2xl, .rounded-xl, .rounded-lg {
+    border-radius: 4px !important;
+  }
+
+  /* Espaçamento otimizado */
+  .mb-8 { margin-bottom: 16px !important; }
+  .mb-6 { margin-bottom: 12px !important; }
+  .mb-4 { margin-bottom: 8px !important; }
+  .p-8 { padding: 12px !important; }
+  .p-6 { padding: 10px !important; }
+  .p-4 { padding: 8px !important; }
+
+  /* Flex layouts para impressão */
+  .flex {
+    display: block !important;
+  }
+
+  .grid {
+    display: block !important;
+  }
+
+  .grid > div {
+    width: 100% !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* Cabeçalho personalizado para impressão */
+  .summary-report-content::before {
+    content: "📊 Relatório de Maturidade de TI";
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #1e40af;
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e5e7eb;
+  }
+
+  /* Rodapé com informações */
+  .summary-report-content::after {
+    content: "© 2025 OnSet Tecnologia - Relatório de Maturidade de TI";
+    display: block;
+    font-size: 10px;
+    color: #6b7280;
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 10px;
+    border-top: 1px solid #e5e7eb;
+    page-break-inside: avoid;
+  }
+
+  /* Forçar quebra de página antes de seções importantes */
+  .bg-white.p-8:nth-of-type(4n) {
+    page-break-before: always;
+  }
+
+  /* Otimizar overflow de tabelas */
+  .overflow-x-auto {
+    overflow: visible !important;
+  }
+
+  /* Melhorar legibilidade de textos pequenos */
+  .text-xs { font-size: 9px !important; }
+  .text-sm { font-size: 10px !important; }
+  .text-lg { font-size: 14px !important; }
+  .text-xl { font-size: 16px !important; }
+  .text-2xl { font-size: 18px !important; }
+  .text-3xl { font-size: 20px !important; }
+  .text-4xl { font-size: 24px !important; }
+  .text-5xl { font-size: 28px !important; }
+}
+
+/* Estilos para o elemento que será convertido em PDF */
+.pdf-container {
+  max-width: 210mm;
+  margin: 0 auto;
+  background: white;
+  color: #374151;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Layout responsivo para diferentes tamanhos de tela */
+@media screen and (max-width: 768px) {
+  .pdf-container {
+    max-width: 100%;
+    padding: 16px;
+  }
+}
