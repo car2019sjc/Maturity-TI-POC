@@ -339,6 +339,153 @@ export const AIPoweredAnalysis: React.FC<AIPoweredAnalysisProps> = ({ analysis, 
           </div>
         )}
       </div>
+      
+      {/* Seção de Upsell - Análise Completa */}
+      <div className="mt-8 bg-gradient-to-r from-orange-50 via-red-50 to-pink-50 border-2 border-orange-300 rounded-xl p-6">
+        <div className="text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full mb-4">
+            <Lightbulb className="w-8 h-8 text-white" />
+          </div>
+          <h3 className="text-2xl font-bold text-gray-900 mb-3">
+            🚀 Esta é Apenas uma Amostra do Poder da IA!
+          </h3>
+          <div className="bg-white rounded-xl p-6 mb-6 border-2 border-orange-200 shadow-lg">
+            <div className="text-center mb-4">
+              <span className="bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                AMOSTRA DEMO
+              </span>
+            </div>
+            <p className="text-lg text-gray-700 mb-3 text-center">
+              <span className="font-bold text-orange-600">Você acabou de ver a análise de apenas 6 práticas</span> das <span className="font-bold text-blue-600">34 práticas completas</span> do nosso framework ITIL v4.
+            </p>
+            <p className="text-base text-gray-600 text-center leading-relaxed">
+              Imagine o valor de uma análise completa com <strong>IA avançada</strong>, incluindo correlações entre todas as práticas, 
+              benchmarks detalhados do seu setor, e um <strong>roadmap estratégico personalizado</strong> para sua realidade específica.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border-2 border-blue-200 shadow-lg">
+              <div className="flex items-center mb-4">
+                <div className="bg-blue-500 rounded-lg p-2 mr-3">
+                  <BarChart3 className="w-5 h-5 text-white" />
+                </div>
+                <h4 className="font-bold text-blue-900 text-lg">📊 Análise POC (Atual)</h4>
+              </div>
+              <ul className="space-y-3">
+                <li className="flex items-center text-sm text-blue-800">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                  <span><strong>6 práticas essenciais</strong></span>
+                </li>
+                <li className="flex items-center text-sm text-blue-800">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                  <span>Análise básica com IA</span>
+                </li>
+                <li className="flex items-center text-sm text-blue-800">
+                  <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                  <span>Roadmap genérico</span>
+                </li>
+                <li className="flex items-center text-sm text-red-600">
+                  <AlertTriangle className="w-4 h-4 text-red-500 mr-2 flex-shrink-0" />
+                  <span>Correlações limitadas</span>
+                </li>
+                <li className="flex items-center text-sm text-red-600">
+                  <AlertTriangle className="w-4 h-4 text-red-500 mr-2 flex-shrink-0" />
+                  <span>Benchmarks básicos</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border-2 border-green-200 shadow-lg relative overflow-hidden">
+              <div className="absolute top-0 right-0 bg-green-500 text-white px-3 py-1 rounded-bl-lg text-xs font-bold">
+                COMPLETA
+              </div>
+              <div className="flex items-center mb-4">
+                <div className="bg-green-500 rounded-lg p-2 mr-3">
+                  <Target className="w-5 h-5 text-white" />
+                </div>
+                <h4 className="font-bold text-green-900 text-lg">🎯 Análise Completa</h4>
+              </div>
+              <ul className="space-y-3">
+                <li className="flex items-center text-sm text-green-800">
+                  <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
+                  <span><strong>34 práticas</strong> de ITIL v4</span>
+                </li>
+                <li className="flex items-center text-sm text-green-800">
+                  <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
+                  <span><strong>IA avançada</strong> multi-agente</span>
+                </li>
+                <li className="flex items-center text-sm text-green-800">
+                  <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
+                  <span><strong>Roadmap personalizado</strong> 3 fases</span>
+                </li>
+                <li className="flex items-center text-sm text-green-800">
+                  <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
+                  <span><strong>Correlações completas</strong></span>
+                </li>
+                <li className="flex items-center text-sm text-green-800">
+                  <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
+                  <span><strong>Benchmarks setoriais</strong></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="bg-gradient-to-r from-yellow-100 to-orange-100 border-2 border-yellow-400 rounded-xl p-6 mb-6 shadow-lg">
+            <div className="flex items-center justify-center mb-3">
+              <div className="bg-yellow-500 rounded-full p-2 mr-3">
+                <Lightbulb className="w-5 h-5 text-white" />
+              </div>
+              <span className="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                INSIGHT EXCLUSIVO
+              </span>
+            </div>
+            <p className="text-yellow-900 font-semibold text-center text-lg">
+              💡 Empresas que implementam avaliações completas de maturidade 
+              alcançam ROI médio de <span className="text-2xl font-bold text-orange-600">300-500%</span> em 18 meses 
+              através de otimizações identificadas pela IA.
+            </p>
+            <p className="text-yellow-800 text-center text-sm mt-2">
+              *Baseado em estudos de caso de mais de 200 organizações que implementaram frameworks completos de ITIL v4
+            </p>
+          </div>
+          
+          <p className="text-lg font-semibold text-gray-900 mb-4">
+            Pronto para descobrir o potencial completo da sua TI?
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button
+              onClick={() => window.open('mailto:comercial@timedeai.com?subject=Interesse em Avaliação Completa de Maturidade de TI&body=Olá, acabei de completar o POC e gostaria de saber mais sobre a avaliação completa com todas as 34 práticas de ITIL v4.', '_blank')}
+              className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-blue-600 hover:to-indigo-700 transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 flex items-center"
+            >
+              <div className="bg-white bg-opacity-20 rounded-full p-2 mr-3">
+                📧
+              </div>
+              Solicitar Avaliação Completa
+            </button>
+            
+            <button
+              onClick={() => window.open('https://calendly.com/timedeai/demo-avaliacao-ti', '_blank')}
+              className="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold text-lg border-3 border-blue-500 hover:bg-blue-50 transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 flex items-center"
+            >
+              <div className="bg-blue-100 rounded-full p-2 mr-3">
+                📅
+              </div>
+              Agendar Demonstração
+            </button>
+          </div>
+          
+          <div className="mt-4 text-center">
+            <p className="text-gray-600 text-sm">
+              📞 <strong>Ou ligue diretamente:</strong> 
+              <a href="tel:+5511999999999" className="text-blue-600 hover:text-blue-800 font-semibold ml-2">
+                (11) 99999-9999
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

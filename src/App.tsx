@@ -7,7 +7,8 @@ import { ReportPreviewModal } from './components/ReportPreviewModal';
 import { LevelDetailsModal } from './components/LevelDetailsModal';
 import { PracticeDetailModal } from './components/PracticeDetailModal';
 import { AILoadingModal } from './components/AILoadingModal';
-import { assessmentData, Practice } from './data/assessmentData';
+import { POCBanner } from './components/POCBanner';
+import { assessmentData, Practice } from './data/pocAssessmentData';
 import { practiceDetails } from './data/practiceDetails';
 import { calculateScores, CompanyInfo, AIAnalysis, generateAIAnalysis, generateEnhancedAIAnalysis } from './utils/calculations';
 
@@ -70,14 +71,7 @@ export default function App() {
     setStep('summary');
   };
 
-  // Função temporária para teste - ir direto ao relatório
-  const handleGoToTestReport = (testData: any) => {
-    setCompanyInfo(testData.companyInfo);
-    setAnswers(testData.answers);
-    setAiAnalysisStarted(false); // Reset para permitir nova análise
-    setAiAnalysis(null); // Limpar análise anterior
-    setStep('summary');
-  };
+
 
   const scores = useMemo(() => calculateScores(answers), [answers]);
 
@@ -177,7 +171,6 @@ export default function App() {
             companyInfo={companyInfo}
             setCompanyInfo={setCompanyInfo}
             onStart={handleStart}
-            onGoToTestReport={handleGoToTestReport}
           />
         );
     }
@@ -185,6 +178,7 @@ export default function App() {
 
   return (
     <div className="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 min-h-screen font-sans">
+      <POCBanner />
       <div className="container mx-auto p-4 sm:p-6 lg:p-8">
         {renderContent()}
       </div>

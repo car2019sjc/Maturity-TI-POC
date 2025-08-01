@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronDown, Info, BookOpen, ArrowRight, ArrowLeft, CheckCircle } from 'lucide-react';
-import { assessmentData } from '../data/assessmentData';
-import { Practice } from '../data/assessmentData';
+import { assessmentData, Practice } from '../data/pocAssessmentData';
 import { PracticeConfirmationModal } from './PracticeConfirmationModal';
 import { practiceDetails } from '../data/practiceDetails';
 import { PracticeContextualInsights } from './PracticeContextualInsights';
@@ -36,9 +35,10 @@ export const AssessmentForm = ({
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [pendingLevel, setPendingLevel] = useState<number | null>(null);
   
-  // Removendo refs não utilizadas
+  // Refs para controle de scroll
   const lastAnswerTimeRef = useRef<number>(0);
   const nextButtonRef = useRef<HTMLButtonElement>(null);
+  const finalButtonRef = useRef<HTMLButtonElement>(null);
 
   // Criar lista linear de todas as práticas com informações da dimensão
   const allPractices = assessmentData.dimensions.flatMap(dim => 
@@ -152,13 +152,25 @@ export const AssessmentForm = ({
       setShowConfirmationModal(false);
       setPendingLevel(null);
       
-      // Scroll suave até o botão de prosseguir após 100ms
+      // Scroll suave até o botão de prosseguir após um pequeno delay
       setTimeout(() => {
-        nextButtonRef.current?.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'center'
-        });
-      }, 100);
+        const isLastPractice = currentPracticeIndex === allPractices.length - 1;
+        const targetButton = isLastPractice ? finalButtonRef.current : nextButtonRef.current;
+        
+        if (targetButton) {
+          targetButton.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'nearest'
+          });
+          
+          // Adicionar um pequeno destaque visual no botão
+          targetButton.classList.add('animate-pulse');
+          setTimeout(() => {
+            targetButton.classList.remove('animate-pulse');
+          }, 2000);
+        }
+      }, 300);
     }
   };
 
@@ -372,6 +384,7 @@ export const AssessmentForm = ({
 
               {allQuestionsAnswered && isLastPractice && (
                 <button 
+                  ref={finalButtonRef}
                   onClick={onNavigateToSummary} 
                   className="bg-gradient-to-r from-green-600 to-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:from-green-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center"
                 >

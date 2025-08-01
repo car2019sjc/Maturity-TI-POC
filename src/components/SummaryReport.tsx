@@ -3,9 +3,10 @@ import { Brain, FileDown } from 'lucide-react';
 import { Scores, getMaturityLevel, AIAnalysis } from '../utils/calculations';
 import { generateProfessionalPDF } from '../utils/pdfGenerator';
 
-import { assessmentData } from '../data/assessmentData';
+import { assessmentData } from '../data/pocAssessmentData';
 import { AIPoweredAnalysis } from './AIPoweredAnalysis';
 import { PracticeLevelModal } from './PracticeLevelModal';
+import { UpsellSection } from './UpsellSection';
 
 interface CompanyInfo {
   name: string;
@@ -977,6 +978,9 @@ export const SummaryReport: React.FC<SummaryReportProps> = ({
           </div>
         </>
       )}
+
+      {/* Seção de Upsell - POC */}
+      <UpsellSection companyInfo={companyInfo} />
 
       {/* Rodapé OnSet Tecnologia */}
       <footer className="text-center py-6 border-t border-gray-200">

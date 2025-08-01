@@ -1,7 +1,7 @@
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as vfs from "pdfmake/build/vfs_fonts";
 import { Scores } from './calculations';
-import { assessmentData } from '../data/assessmentData';
+import { assessmentData } from '../data/pocAssessmentData';
 
 interface CompanyInfo {
 	name: string;
@@ -59,7 +59,7 @@ export const generateProfessionalPDF = (
 	// Configurar fontes do PDFMake
 	if (typeof (pdfMake as any).vfs === 'undefined') {
 		try {
-			(pdfMake as any).vfs = (vfs as any).pdfMake?.vfs || vfs;
+			(pdfMake as any).vfs = vfs;
 		} catch (error) {
 			console.warn('Erro ao configurar fontes do PDF:', error);
 		}
@@ -280,14 +280,21 @@ export const generateProfessionalPDF = (
 
 	  const docDefinition: any = {
     pageSize: 'A4',
-    pageMargins: [35, 50, 35, 50],
+    pageMargins: [30, 40, 30, 40],
     
     header: {
-      margin: [35, 15],
+      margin: [25, 10],
       table: {
-        widths: ['*', 'auto'],
+        widths: ['auto', '*', 'auto'],
         body: [[
-          { text: 'Relatório de Maturidade de TI', style: 'headerTitle' },
+          { 
+            text: [
+              { text: 'On', color: '#1e40af', fontSize: 12, bold: true },
+              { text: 'Set', color: '#f59e0b', fontSize: 12, bold: true }
+            ],
+            margin: [0, 2, 0, 0]
+          },
+          { text: 'Relatório de Maturidade de TI - POC', style: 'headerTitle', alignment: 'center' },
           { text: new Date().toLocaleDateString('pt-BR'), style: 'headerDate' }
         ]]
       },
@@ -295,14 +302,15 @@ export const generateProfessionalPDF = (
     },
 
     footer: (currentPage: number, pageCount: number) => ({
-      margin: [35, 15],
+      margin: [25, 10],
       table: {
         widths: ['*', 'auto'],
         body: [[
           { text: [
             { text: '© 2025 ' },
-            { text: 'OnSet Tecnologia', bold: true },
-            { text: ' - Especialistas em Transformação Digital e ITIL' }
+            { text: 'On', color: '#1e40af', bold: true },
+            { text: 'Set', color: '#f59e0b', bold: true },
+            { text: ' Tecnologia - Especialistas em Transformação Digital e ITIL' }
           ], style: 'footer' },
           { text: `Página ${currentPage} de ${pageCount}`, style: 'footer' }
         ]]
@@ -313,10 +321,24 @@ export const generateProfessionalPDF = (
 		content: [
 			      // Capa
       {
-        text: 'RELATÓRIO DE MATURIDADE DE TI',
+        text: 'RELATÓRIO DE MATURIDADE DE TI - POC',
         style: 'coverTitle',
         alignment: 'center',
-        margin: [0, 80, 0, 40]
+        margin: [0, 40, 0, 15]
+      },
+      {
+        text: 'VERSÃO DEMO',
+        style: 'coverSubtitle',
+        alignment: 'center',
+        color: '#dc2626',
+        margin: [0, 0, 0, 10]
+      },
+      {
+        text: 'Avaliação de 6 práticas essenciais de ITIL v4',
+        style: 'coverDescription',
+        alignment: 'center',
+        color: '#6b7280',
+        margin: [0, 0, 0, 15]
       },
       {
         text: clonedCompanyInfo.name,
@@ -328,7 +350,7 @@ export const generateProfessionalPDF = (
         text: `Setor: ${clonedCompanyInfo.sector}`,
         style: 'coverSector',
         alignment: 'center',
-        margin: [0, 0, 0, 80]
+        margin: [0, 0, 0, 30]
       },
       {
         text: `Gerado em: ${new Date().toLocaleDateString('pt-BR')}`,
@@ -343,7 +365,7 @@ export const generateProfessionalPDF = (
       {
         text: 'ÍNDICE',
         style: 'sectionTitle',
-        margin: [0, 0, 0, 20]
+        margin: [0, 0, 0, 15]
       },
 			{
 				stack: [
@@ -373,7 +395,7 @@ export const generateProfessionalPDF = (
 					},
 					{ 
 						columns: [
-							{ text: '4. Práticas para Implementação', style: 'indexItem', width: 'auto' },
+							{ text: '4. Práticas Avaliadas no POC', style: 'indexItem', width: 'auto' },
 							{ text: ' ', width: '*' },
 							{ text: '5', style: 'indexPage', width: 30 }
 						],
@@ -381,7 +403,7 @@ export const generateProfessionalPDF = (
 					},
 					{ 
 						columns: [
-							{ text: '5. TOP 10 Práticas com Maior Gap', style: 'indexItem', width: 'auto' },
+							{ text: '5. Práticas Avaliadas - Análise de Gaps', style: 'indexItem', width: 'auto' },
 							{ text: ' ', width: '*' },
 							{ text: '6', style: 'indexPage', width: 30 }
 						],
@@ -435,6 +457,14 @@ export const generateProfessionalPDF = (
         margin: [0, 0, 0, 15]
       },
       {
+        text: [
+          { text: '🎯 VERSÃO DEMO: ', style: 'pocLabel' },
+          { text: 'Este relatório apresenta uma avaliação gratuita baseada em 6 práticas essenciais de ITIL v4, selecionadas estrategicamente para oferecer uma visão inicial da maturidade de TI da sua organização. Para uma análise completa com todas as 34 práticas, entre em contato com nossa equipe comercial.' }
+        ],
+        style: 'pocDescription',
+        margin: [0, 0, 0, 20]
+      },
+      {
         columns: [
           {
             width: '48%',
@@ -455,7 +485,7 @@ export const generateProfessionalPDF = (
             margin: [10, 0, 0, 0]
           }
         ],
-        margin: [0, 0, 0, 30]
+        margin: [0, 0, 0, 20]
       },
 
       // 2. Análise de Maturidade
@@ -599,7 +629,7 @@ export const generateProfessionalPDF = (
 					]
 				},
 				layout: 'stripedTable',
-        margin: [0, 0, 0, 30]
+        margin: [0, 0, 0, 20]
       },
 
       // Nova página
@@ -607,9 +637,16 @@ export const generateProfessionalPDF = (
 
       // 4. Práticas para Implementação
       {
-        text: '4. PRÁTICAS PARA IMPLEMENTAÇÃO',
+        text: '4. PRÁTICAS AVALIADAS NO POC',
         style: 'sectionTitle',
-        margin: [0, 0, 0, 20]
+        margin: [0, 0, 0, 15]
+      },
+      {
+        text: [
+          { text: 'As 6 práticas a seguir foram selecionadas estrategicamente para oferecer uma visão representativa da maturidade de TI da sua organização. ', style: 'bodyText' },
+          { text: 'Para uma análise completa com todas as 34 práticas de ITIL v4, solicite nossa avaliação completa.', style: 'bodyText', color: '#dc2626' }
+        ],
+        margin: [0, 0, 0, 15]
       },
 			{
 				table: {
@@ -628,17 +665,17 @@ export const generateProfessionalPDF = (
 					]
 				},
 				layout: 'stripedTable',
-				margin: [0, 0, 0, 15]
+				margin: [0, 0, 0, 10]
       },
       {
         text: 'Legenda: PP=Pontuação Ponderada atual | PM=Pontuação Máxima possível | Gap=Diferença para máxima maturidade',
         style: 'legend',
-        margin: [0, 10, 0, 30]
+        margin: [0, 8, 0, 15]
       },
 
       // 5. TOP 10 Práticas com Maior Gap
       {
-        text: '5. TOP 10 PRÁTICAS COM MAIOR GAP',
+        text: '5. PRÁTICAS AVALIADAS - ANÁLISE DE GAPS',
         style: 'sectionTitle',
         margin: [0, 0, 0, 20]
       },
@@ -664,7 +701,7 @@ export const generateProfessionalPDF = (
 					]
 				},
 				layout: 'redHeaderTable',
-        margin: [0, 0, 0, 30]
+        margin: [0, 0, 0, 20]
       },
 
       // 6. Detalhamento por Dimensão
@@ -689,7 +726,7 @@ export const generateProfessionalPDF = (
 					]
 				},
 				layout: 'blueHeaderTable',
-        margin: [0, 0, 0, 30]
+        margin: [0, 0, 0, 20]
       },
 
 			      // Análise com IA (condicional)
@@ -833,17 +870,53 @@ export const generateProfessionalPDF = (
         style: 'bodyText',
         margin: [0, 0, 0, 20]
       },
+      
+      // Seção sobre versão completa
       {
-        text: 'ACELERE SUA TRANSFORMAÇÃO DIGITAL COM A ONSET TECNOLOGIA',
+        text: 'QUER UMA ANÁLISE COMPLETA?',
         style: 'sectionTitle',
         alignment: 'center',
-        margin: [0, 20, 0, 15]
+        color: '#dc2626',
+        margin: [0, 20, 0, 10]
+      },
+      {
+        text: [
+          { text: 'Este POC avaliou apenas ', style: 'bodyText' },
+          { text: '6 das 34 práticas', bold: true, color: '#dc2626' },
+          { text: ' do nosso framework completo baseado em ITIL v4. Nossa avaliação completa oferece:', style: 'bodyText' }
+        ],
+        margin: [0, 0, 0, 15]
+      },
+      {
+        ul: [
+          'Análise detalhada de todas as 34 práticas de ITIL v4',
+          'Avaliação completa das 5 dimensões estratégicas',
+          'Roadmap personalizado em 3 fases com KPIs específicos',
+          'Análise de gaps críticos e priorização de ações',
+          'Relatório executivo detalhado para liderança',
+          'Benchmarking com empresas do seu setor'
+        ],
+        style: 'bodyText',
+        margin: [20, 0, 0, 15]
+      },
+      
+      {
+        text: [
+          { text: 'ACELERE SUA TRANSFORMAÇÃO DIGITAL COM A ' },
+          { text: 'ON', color: '#1e40af', bold: true },
+          { text: 'SET', color: '#f59e0b', bold: true },
+          { text: ' TECNOLOGIA' }
+        ],
+        style: 'sectionTitle',
+        alignment: 'center',
+        margin: [0, 15, 0, 10]
       },
       {
         text: [
           { text: 'A ' },
-          { text: 'OnSet Tecnologia', bold: true },
-          { text: ' é sua parceira estratégica para implementar as melhores práticas de ITIL e elevar a maturidade de TI da sua organização. Com décadas de experiência no mercado, somos especialistas em transformação digital e governance de TI, atendendo clientes de médio e grande porte em diversos setores.' }
+          { text: 'On', color: '#1e40af', bold: true },
+          { text: 'Set', color: '#f59e0b', bold: true },
+          { text: ' Tecnologia é sua parceira estratégica para implementar as melhores práticas de ITIL e elevar a maturidade de TI da sua organização. Com décadas de experiência no mercado, somos especialistas em transformação digital e governance de TI, atendendo clientes de médio e grande porte em diversos setores.' }
         ],
         style: 'bodyText',
         alignment: 'justify',
@@ -958,6 +1031,15 @@ export const generateProfessionalPDF = (
 				fontSize: 12,
 				color: '#9ca3af'
 			},
+			coverSubtitle: {
+				fontSize: 18,
+				bold: true,
+				color: '#dc2626'
+			},
+			coverDescription: {
+				fontSize: 14,
+				color: '#6b7280'
+			},
 			headerTitle: {
 				fontSize: 12,
 				bold: true,
@@ -988,12 +1070,12 @@ export const generateProfessionalPDF = (
 			},
 			analysisContent: {
 				fontSize: 10,
-				lineHeight: 1.4,
+				lineHeight: 1.2,
 				color: '#374151'
 			},
 			bodyText: {
 				fontSize: 10,
-				lineHeight: 1.4,
+				lineHeight: 1.2,
 				color: '#374151',
 				alignment: 'justify'
 			},
@@ -1015,7 +1097,18 @@ export const generateProfessionalPDF = (
 			indexItem: {
 				fontSize: 11,
 				color: '#374151',
-				lineHeight: 1.3
+				lineHeight: 1.1
+			},
+			pocLabel: {
+				fontSize: 10,
+				bold: true,
+				color: '#dc2626'
+			},
+			pocDescription: {
+				fontSize: 10,
+				lineHeight: 1.4,
+				color: '#374151',
+				alignment: 'justify'
 			},
 			indexPage: {
 				fontSize: 11,

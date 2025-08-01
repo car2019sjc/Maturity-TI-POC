@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, ArrowLeft, BookOpen, Target, Users, Shield, TrendingUp, ChevronDown, ChevronUp } from 'lucide-react';
-import { assessmentData } from '../data/assessmentData';
+import { assessmentData } from '../data/pocAssessmentData';
 import { practiceDetails } from '../data/practiceDetails';
 
 interface DimensionsOverviewProps {
